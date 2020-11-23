@@ -16,4 +16,4 @@ db.user.insert({"username": "admin", "password": "123456"})
 
 Servlet版：https://github.com/YanHui-Yang/StudentManagerMongoDB
 
-Spring MVC版：https://github.com/YanHui-Yang/book_manger_mongodb
+Spring MVC版：https://github.com/YanHui-Yang/ssm_student_manager_mongodb
