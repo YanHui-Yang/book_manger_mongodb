@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div style="margin-top: 14px;">
+    <a href="/page/addRet" class="btn btn-success">添加</a>
+</div>
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>书名</th>
+        <th>还书人</th>
+        <th>日期</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="listTable">
+    <tr th:each="ret:${rets}">
+        <td th:text="${ret.bookId}"></td>
+        <td th:text="${ret.bookName}"></td>
+        <td th:text="${ret.name}"></td>
+        <td th:text="${#dates.format(ret.retDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${ret.id}" style="display: none"></td>
+        <td>
+            <a th:href="@{'/ret/delete/'+ ${ret.id}}" class="btn btn-danger">删除</a>
+            <a th:href="@{'/page/editRet/'+ ${ret.id}}" class="btn btn-info">修改</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="/static/js/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#del").click(function () {
+            $("#del").parent().parent().remove()
+        });
+    })
+</script>
+</body>
+</html>

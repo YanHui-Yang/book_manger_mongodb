@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<h1>新增数据</h1>
+<form>
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>编号</th>
+            <td><input type="text" name="bookId" class="form-control" id="bookId"/></td>
+        </tr>
+        <tr>
+            <th>书名</th>
+            <td><input type="text" name="bookName" class="form-control" id="bookName"/></td>
+        </tr>
+        <tr>
+            <th>作者</th>
+            <td><input type="text" name="author" class="form-control" id="author"/></td>
+        </tr>
+        <tr>
+            <th>价格</th>
+            <td><input type="text" name="price" class="form-control" id="price"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="reset" value="重置" class="btn btn-primary" id="reset"/>
+                <input type="button" value="添加" class="btn btn-success" id="add"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<script src="/static/js/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#add").click(function () {
+            $.ajax({
+                url: "/book/insert",
+                type: "post",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({
+                    "bookId": $("#bookId").val(),
+                    "bookName": $("#bookName").val(),
+                    "author": $("#author").val(),
+                    "price": $("#price").val(),
+                })
+            })
+            alert("添加成功！")
+            window.location = "/book/findAll"
+        })
+    })
+</script>
+</body>
+</html>
